@@ -1,0 +1,22 @@
+<h1>{{title}}</h1>
+<p>CONTROL {{title}}</p>
+
+<div class="demo" id="1"><img src="http://unsplash.it/557/387/" alt="" class="demo-image"></div>
+<div class="demo" id="2"><img src="http://unsplash.it/602/660/" alt="" class="demo-image"></div>
+<div class="demo" id="3"><img src="http://unsplash.it/660/646/" alt="" class="demo-image"></div>
+<div class="demo" id="4"><img src="http://unsplash.it/741/375/" alt="" class="demo-image"></div>
+<div class="demo" id="5"><img src="http://unsplash.it/813/455/" alt="" class="demo-image"></div>
+<div class="demo" id="6"><img src="http://unsplash.it/470/896/" alt="" class="demo-image"></div>
+<div class="demo" id="7"><img src="http://unsplash.it/664/653/" alt="" class="demo-image"></div>
+<div class="demo" id="8"><img src="http://unsplash.it/708/313/" alt="" class="demo-image"></div>
+
+<script>
+$(document).ready(function(){
+    $("img").click(function(){
+      var img = $(this).parent().attr('id')
+        $.get("//localhost:3000/image/"+img, function(data, status){
+            console.log("Data: " + data + "\nStatus: " + status);
+        });
+    });
+});
+</script>

@@ -1,0 +1,31 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+
+
+<p>Hello, my name is {{name}}. I am from {{hometown}}. I have
+             {{kids.length}} kids:</p>
+             <ul>{{#kids}}<li>{{name}} is {{age}}</li>{{/kids}}</ul>
+
+             <div class="demo" id="1"><img src="http://unsplash.it/557/387/" alt="" class="demo-image"></div>
+             <div class="demo" id="2"><img src="http://unsplash.it/602/660/" alt="" class="demo-image"></div>
+             <div class="demo" id="3"><img src="http://unsplash.it/660/646/" alt="" class="demo-image"></div>
+             <div class="demo" id="4"><img src="http://unsplash.it/741/375/" alt="" class="demo-image"></div>
+             <div class="demo" id="5"><img src="http://unsplash.it/813/455/" alt="" class="demo-image"></div>
+             <div class="demo" id="6"><img src="http://unsplash.it/470/896/" alt="" class="demo-image"></div>
+             <div class="demo" id="7"><img src="http://unsplash.it/664/653/" alt="" class="demo-image"></div>
+             <div class="demo" id="8"><img src="http://unsplash.it/708/313/" alt="" class="demo-image"></div>
+
+<script src="/socket.io/socket.io.js" ></script>
+<script src="/javascripts/moveTo.js"></script>
+<script>
+console.log('Hello');
+const moveTo = new MoveTo();
+
+var socket = io('//localhost:3000');
+socket.on('socketToMe', function (data) {
+  console.log(data);
+  const target = document.getElementById(data.imagenumber);
+  moveTo.move(target);
+
+});
+</script>
