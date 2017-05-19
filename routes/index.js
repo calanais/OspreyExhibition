@@ -1,11 +1,16 @@
 var express = require('express');
 var router = express.Router();
 
+var getImgs = require('./util.js');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  var data = { title: 'Express',"name": "Alan", "hometown": "Somewhere, TX",
-             "kids": [{"name": "Jimmy", "age": "12"}, {"name": "Sally", "age": "4"}]};
+  var data = getImgs();
+  data.title ='Express';
   res.render('index', data);
 });
+
+
+
 
 module.exports = router;
