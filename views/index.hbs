@@ -34,18 +34,25 @@
 
 <script src="/socket.io/socket.io.js" ></script>
 <script src="/javascripts/moveTo.js"></script>
+<script src="/javascripts/queue.js"></script>
 <script>
+
+
+var queue = new Queue();
+
 console.log('Hello');
 const moveTo = new MoveTo();
 
 var socket = io('//localhost:3000');
-socket.on('socketToMe', function (data) {
-  console.log(data);
+socket.on('socketToMe',  (data) => {
+  queue.enq(data);
+  console.log(queue.deq());
   const target = document.getElementById(data.imagenumber);
   moveTo.move(target, {    callback: function (target) {
     console.log('moved to '+target);
-      // Overwrites global callback
-    }});
+     $(target).find('a').click();
+     setTimeout(() => { $('.lb-close').click()}, 10000) ;
+   }});
 
 });
 </script>
