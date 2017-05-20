@@ -1,14 +1,11 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-
-
 
              <main class="mastcontent">
                  <section class="intro-copy padding-y padding-lg">
                      <div class="container">
                          <div class="grid">
                              <div class="grid__column grid__column--12 grid__column--12--md">
-                                 <h1>Title</h1>
+                              
+                              <h3>Connect to BWPS-WIFI to control the images </h3>
 
                                  <div class="i-grid" id="macy-container">
 
@@ -43,16 +40,39 @@ var queue = new Queue();
 console.log('Hello');
 const moveTo = new MoveTo();
 
+var intervalTimer;
+
 var socket = io('//localhost:3000');
 socket.on('socketToMe',  (data) => {
+  // if (queue.isEmpty()){
+  //   clearTimeout(intervalTimer);
+  //   queue.enq(data);
+  //   displayImage();
+  // }else {
+  //   queue.enq(data);
+  // }
+
   queue.enq(data);
-  console.log(queue.deq());
+
+});
+
+displayImage();
+
+function displayImage(){
+  var data;
+  if (queue.isEmpty()) {
+    data = {imagenumber : 1};
+  } else {
+    data = queue.deq();
+  }
+  console.log(data);
+   $('.lb-close').click()
   const target = document.getElementById(data.imagenumber);
   moveTo.move(target, {    callback: function (target) {
     console.log('moved to '+target);
      $(target).find('a').click();
-     setTimeout(() => { $('.lb-close').click()}, 10000) ;
+     intervalTime = setTimeout(() => { displayImage(); },10000);
    }});
+}
 
-});
 </script>
