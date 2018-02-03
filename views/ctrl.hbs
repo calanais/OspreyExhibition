@@ -10,7 +10,9 @@
 {{#images}}
 
 <div id="{{id}}" class="i-grid-item">
+   <a href="">
       <img src="imgs/{{filename}}" />
+   </a>
 </div>
 
 
@@ -25,9 +27,9 @@
 
 <script>
 $(document).ready(function(){
-    $("img").click(function(){
+    $("a").click(function(){
       var img = $(this).parent().attr('id')
-        $.get("//localhost:3000/image/"+img, function(data, status){
+        $.get("//192.168.1.102:3000/image/"+img, function(data, status){
             console.log("Data: " + data + "\nStatus: " + status);
         });
     });
